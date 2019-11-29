@@ -13,13 +13,13 @@ WLAN        wlan0                 10.0.1.1/24
 /etc/netctl/pppoe
 
 3. set static ip address on interface eth1
-/etc/netctl/ethernet-internal
+/etc/netctl/ethernet-inner
+
+5. set static ip address on interface wlan0
+/etc/netctl/wlan-inner
 
 4. set up wifi link layer using hostapd
 /etc/hostapd/hostapd.conf
-
-5. set static ip address on interface wlan0
-ip address add 10.0.1.1 dev wlan0
 
 6. dnsmasq dns and dscp for eth1 and wlan0 
 /etc/dnsmasq.conf
@@ -55,3 +55,7 @@ https://wiki.archlinux.org/index.php/Iptables
 https://www.frozentux.net/iptables-tutorial/images/tables_traverse.jpg
 https://blog.csdn.net/bytxl/article/details/45027921
 https://wiki.archlinux.org/index.php/Internet_sharing#Enable_packet_forwarding
+
+
+https://bbs.archlinux.org/viewtopic.php?id=161816
+HostAP inits the card (think of it as a special driver), netctl deals with IPs, and systemd handles dependencies
