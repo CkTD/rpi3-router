@@ -33,7 +33,6 @@ WLAN        wlan0                 10.0.1.1/24
 /etc/iptables/iptables.rules
 
 
-
 rpi3 archlinuxarm
 https://archlinuxarm.org/platforms/armv8/broadcom/ra/spberry-pi-3
 

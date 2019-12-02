@@ -1,0 +1,11 @@
+[Unit]
+Description=ssh remote tunnel
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/ssh -R 47.240.5.208:11111:localhost:22 -p 22222 root@47.240.5.208 -TN
+
+[Install]
+WantedBy=multi-user.target
