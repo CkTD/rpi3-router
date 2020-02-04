@@ -1,4 +1,4 @@
-Set a Raspberry Pi3 Router.
+Setup a Raspberry Pi3 Router.
 
 Network     interface             address
 WAN(pppoe)  eth0 (100MEthernet)   dynamic
@@ -58,3 +58,17 @@ https://wiki.archlinux.org/index.php/Internet_sharing#Enable_packet_forwarding
 
 https://bbs.archlinux.org/viewtopic.php?id=161816
 HostAP inits the card (think of it as a special driver), netctl deals with IPs, and systemd handles dependencies
+
+
+
+=== WireGuard
+Install:
+https://www.wireguard.com/install/
+SetUp: 
+VPN on PI and remote(set dns to 8.8.8.8):  https://wiki.archlinux.org/index.php/WireGuard#Specific_use-case:_VPN_server
+route all traffic:  https://www.wireguard.com/netns/#routing-all-your-traffic
+
+man wg, man wg-quick
+https://www.wireguard.com/#conceptual-overview
+https://www.wireguard.com/quickstart/
+https://www.wireguard.com/papers/wireguard.pdf
