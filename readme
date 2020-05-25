@@ -67,7 +67,10 @@ https://www.wireguard.com/install/
 SetUp: 
 VPN on PI and remote(set dns to 8.8.8.8):  https://wiki.archlinux.org/index.php/WireGuard#Specific_use-case:_VPN_server
 route all traffic:  https://www.wireguard.com/netns/#routing-all-your-traffic
-Take care of MTU: https://keremerkan.net/posts/wireguard-mtu-fixes/
+Take care of MTU: 
+https://keremerkan.net/posts/wireguard-mtu-fixes/
+https://www.linuxtopia.org/Linux_Firewall_iptables/x4700.html
+https://myrandomtechblog.com/cryptomining/change-mtu-size-in-windows-10/
 
 man wg, man wg-quick
 https://www.wireguard.com/#conceptual-overview
