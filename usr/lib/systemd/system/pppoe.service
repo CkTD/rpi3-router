@@ -1,0 +1,13 @@
+[Unit]
+Description=PPPoE connection
+After=sys-subsystem-net-devices-eth0.device
+BindsTo=sys-subsystem-net-devices-eth0.device
+
+[Service]
+Type=forking
+ExecStart=/usr/sbin/pon 
+ExecStop=/usr/sbin/poff
+
+
+[Install]
+WantedBy=sys-subsystem-net-devices-eth0.device

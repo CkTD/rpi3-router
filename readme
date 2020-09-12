@@ -2,79 +2,35 @@ Setup a Raspberry Pi3 Router.
 
 Network     interface             address
 WAN(pppoe)  eth0 (100MEthernet)   dynamic
-LAN         eth1 (USB2RJ45)       10.0.0.1/24
-WLAN        wlan0                 10.0.1.1/24
+LAN         eth1 (USB2RJ45)       10.100.100.1/24
+WLAN        wlan0                 10.100.200.1/24
 
 
 
 1. install archlinuxarm on pi.
+https://archlinuxarm.org/platforms/armv8/broadcom/raspberry-pi-3
 
-2. set up PPPoE via netctl 
-/etc/netctl/pppoe
+2. enable systemd-networkd and systemd-resolved
+default dns server: /etc/resolvconf.conf
+bring up eth0 link layer /etc/network/eth0.network
+ip address, dhcp server, ip forwarding and snat for eth1 /etc/network/eth1.network
+ip address, dhcp server, ip forwarding and snat for wlan0 /etc/network/wlan.network
 
-3. set static ip address on interface eth1
-/etc/netctl/ethernet-inner
+3. install and enable ppp
+config peers: /etc/ppp/peers/provider
+systemd service: /usr/lib/systemd/system/pppoe.service
+https://wiki.archlinux.org/index.php/Ppp
+https://github.com/systemd/systemd/issues/481
 
-5. set static ip address on interface wlan0
-/etc/netctl/wlan-inner
-
-4. set up wifi link layer using hostapd
-/etc/hostapd/hostapd.conf
-
-6. dnsmasq dns and dscp for eth1 and wlan0 
-/etc/dnsmasq.conf
-
-(disable systemd-resolved, systemd-networkd and any other network manager.)
-
-7. set net.ipv4.ip_forward = 1
-/etc/sysctl.d/50-default.conf
-
-8. rules for ip forward, snat and prevent fragmentation
-/etc/iptables/iptables.rules
-
-
-rpi3 archlinuxarm
-https://archlinuxarm.org/platforms/armv8/broadcom/ra/spberry-pi-3
-
-basic router:
-https://wiki.archlinux.org/index.php/Router
-
-netctl:
-https://wiki.archlinux.org/index.php/Netctl
-
-dnsmasq:
-https://wiki.archlinux.org/index.php/Dnsmasq
-https://stackoverflow.com/questions/9326438/dnsmasq-serve-different-ip-addresses-based-on-interface-used/26964151#26964151
-
-hostapd:
+4. install and enable hostapd
+set up wlan0 link layer: /etc/hostapd/hostapd.conf
 https://wiki.archlinux.org/index.php/Software_access_point
 
-iptables:
+
+5. enable iptables, prevent fragmentation
+/etc/iptables/iptables.rules
 https://wiki.archlinux.org/index.php/Iptables
 https://www.frozentux.net/iptables-tutorial/images/tables_traverse.jpg
 https://blog.csdn.net/bytxl/article/details/45027921
 https://wiki.archlinux.org/index.php/Internet_sharing#Enable_packet_forwarding
-
-
-https://bbs.archlinux.org/viewtopic.php?id=161816
-HostAP inits the card (think of it as a special driver), netctl deals with IPs, and systemd handles dependencies
-
-
-
-=== WireGuard
-Install:
-https://www.wireguard.com/install/
-SetUp: 
-VPN on PI and remote(set dns to 8.8.8.8):  https://wiki.archlinux.org/index.php/WireGuard#Specific_use-case:_VPN_server
-route all traffic:  https://www.wireguard.com/netns/#routing-all-your-traffic
-Take care of MTU: 
-https://en.wikipedia.org/wiki/Maximum_segment_size
-https://keremerkan.net/posts/wireguard-mtu-fixes/
-https://www.linuxtopia.org/Linux_Firewall_iptables/x4700.html
-https://myrandomtechblog.com/cryptomining/change-mtu-size-in-windows-10/
-
-
-man wg, man wg-quick
-https://www.wireguard.com/#conceptual-overview
-https://www.wireguard.com/quickstart/
-https://www.wireguard.com/papers/wireguard.pdf
+https://wiki.archlinux.org/index.php/Router#Connection_sharing

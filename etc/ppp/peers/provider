@@ -1,0 +1,14 @@
+plugin rp-pppoe.so
+
+
+eth0
+
+name "THEUSERNAME"
+password "THEPASSWORD"
+#hide-password
+
+persist
+#usepeerdns
+defaultroute
+noauth
+
